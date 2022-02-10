@@ -1,12 +1,12 @@
 import UserModel from "./user"
-import TaskModel from "./task"
+import AuthTokenModel from "./authtoken"
 
 export default (sequelize: any) => {
   const User = UserModel(sequelize)
-  const Task = TaskModel(sequelize)
+  const AuthToken = AuthTokenModel(sequelize)
 
   return {
     User,
-    Task,
+    AuthToken,
   }
 }

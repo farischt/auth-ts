@@ -1,22 +1,21 @@
 import cookie from "cookie"
 import formidable, { Fields, Files } from "formidable"
-// import Database from "@/server/database"
+import { AuthToken } from "../database/models/authtoken"
+import { User } from "../database/models/user"
+import Database from "@/server/database"
 
 class Backend {
-  getIpAddress(context: { req: { socket: { remoteAddress: any } } }) {
+  getIpAddress(context: any): any {
     return context.req.socket.remoteAddress
   }
 
-  isUUID(id: string) {
+  isUUID(id: string): boolean {
     const regexExp =
       /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/gi
     return regexExp.test(id)
   }
 
-  setAuthCookie(
-    context: { res: { setHeader: (arg0: string, arg1: string) => void } },
-    token: string
-  ) {
+  setAuthCookie(context: any, token: string): void {
     context.res.setHeader(
       "Set-Cookie",
       cookie.serialize("authToken", token, {
@@ -29,12 +28,7 @@ class Backend {
     )
   }
 
-  deleteAuthCookie(context: {
-    req?:
-      | { cookies: { authToken: string } }
-      | { cookies: { authToken: string } }
-    res?: any
-  }) {
+  deleteAuthCookie(context: any): void {
     context.res.setHeader(
       "Set-Cookie",
       cookie.serialize("authToken", "", {
@@ -47,9 +41,11 @@ class Backend {
     )
   }
 
-  // hasAuthTokenExpired(token: Token) {
-  //   return Date.now() - new Date(token.createdAt).getTime() + 60 * 60 <= 0
-  // }
+  hasAuthTokenExpired(token: AuthToken): boolean {
+    return token.createdAt
+      ? Date.now() - new Date(token.createdAt).getTime() + 60 * 60 <= 0
+      : true
+  }
 
   async parseMultipart(context: { req: any }) {
     return await new Promise((resolve, reject) => {
@@ -65,36 +61,34 @@ class Backend {
     })
   }
 
-  // async login(context: any, token: string) {
-  //   this.setAuthCookie(context, token)
-  // }
+  async login(context: any, token: string): Promise<void> {
+    this.setAuthCookie(context, token)
+  }
 
-  // async logout(context: { req: { cookies: { authToken: string } } }) {
-  //   const token =
-  //     context.req.cookies.authToken &&
-  //     this.isUUID(context.req.cookies.authToken) &&
-  //     (await Database.AuthToken.findByPk(context.req.cookies.authToken))
-  //   token && (await token.destroy())
+  async logout(context: any): Promise<void> {
+    const token =
+      context.req.cookies.authToken &&
+      this.isUUID(context.req.cookies.authToken) &&
+      (await Database.AuthToken.findByPk(context.req.cookies.authToken))
+    token && (await token.destroy())
 
-  //   this.deleteAuthCookie(context)
-  // }
+    this.deleteAuthCookie(context)
+  }
 
-  // async getAuthenticatedUser(context: {
-  //   req: { cookies: { authToken: string } }
-  // }) {
-  //   if (!context.req.cookies.authToken) return null
-  //   const token =
-  //     this.isUUID(context.req.cookies.authToken) &&
-  //     (await Database.AuthToken.findByPk(context.req.cookies.authToken))
+  async getAuthenticatedUser(context: any): Promise<User | null> {
+    if (!context.req.cookies.authToken) return null
+    const token =
+      this.isUUID(context.req.cookies.authToken) &&
+      (await Database.AuthToken.findByPk(context.req.cookies.authToken))
 
-  //   if (!token) return null
-  //   else if (this.hasAuthTokenExpired(token)) {
-  //     this.deleteAuthCookie(context)
-  //     await token.destroy()
-  //     return null
-  //   }
-  //   return (await Database.User.findByPk(token.user_id)) || null
-  // }
+    if (!token) return null
+    else if (this.hasAuthTokenExpired(token)) {
+      this.deleteAuthCookie(context)
+      await token.destroy()
+      return null
+    }
+    return (await Database.User.findByPk(token.userId)) || null
+  }
 }
 
 export default new Backend()

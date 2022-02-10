@@ -1,18 +1,17 @@
 "use strict"
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Tasks", {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
+    await queryInterface.createTable("AuthTokens", {
+      token: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         primaryKey: true,
-        type: Sequelize.INTEGER,
-      },
-      title: {
-        type: Sequelize.STRING,
+        allowNull: false,
       },
       userId: {
         type: Sequelize.INTEGER,
+        allowNull: true,
+        onUpdate: "CASCADE",
         onDelete: "CASCADE",
         references: {
           model: "Users",
@@ -31,6 +30,6 @@ module.exports = {
     })
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("Tasks")
+    await queryInterface.dropTable("AuthTokens")
   },
 }

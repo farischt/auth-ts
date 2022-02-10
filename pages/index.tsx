@@ -89,14 +89,16 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
     where: {
       id: 1,
     },
-    include: Database.Task,
+    include: Database.AuthToken,
   })
+
+  console.log(JSON.stringify(user, null, 2))
 
   return {
     props: {
       user: user && {
         firstName: user.firstName,
-        createdAt: user.createdAt.toLocaleDateString(),
+        createdAt: user.createdAt?.toLocaleDateString() || null,
       },
     },
   }
