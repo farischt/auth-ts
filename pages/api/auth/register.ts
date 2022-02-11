@@ -1,13 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import Database from "@/server/database"
 
-interface RegistrationInput {
-  email: string
-  firstName: string
-  lastName: string
-  password: string
-  repeatPassword: string
-}
+import Database from "@/server/database"
+import type {
+  RegistrationInput,
+  RegistrationOutput,
+  ApiError,
+} from "../../../api/types"
 
 interface ExtendedNextApiRequest extends NextApiRequest {
   body: RegistrationInput
@@ -15,7 +13,7 @@ interface ExtendedNextApiRequest extends NextApiRequest {
 
 export default async function handler(
   req: ExtendedNextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse<RegistrationOutput | ApiError>
 ) {
   if (req.method === "POST") {
     if (typeof req.body.email !== "string") {
@@ -57,24 +55,35 @@ export default async function handler(
 
     const email = req.body.email.trim()
 
-    if (await Database.User.emailTaken(email)) {
-      res.statusCode = 400
-      return res.json({ error: "email_taken" })
+    try {
+      if (await Database.User.emailTaken(email)) {
+        res.statusCode = 400
+        return res.json({ error: "email_taken" })
+      }
+
+      const { firstName, lastName, password } = req.body
+      const user = Database.User.build({
+        firstName,
+        lastName,
+        email,
+        password: null,
+      })
+
+      await user.setPassword(password)
+      await user.save()
+
+      res.statusCode = 200
+      res.json({
+        success: true,
+        id: user.id,
+        email: user.email,
+        firstName: user.firstName,
+        lastName: user.lastName,
+      })
+    } catch (error) {
+      res.statusCode = 500
+      res.json({ error: "internal_server_error" })
     }
-
-    const { firstName, lastName, password } = req.body
-    const user = Database.User.build({
-      firstName,
-      lastName,
-      email,
-      password: null,
-    })
-
-    await user.setPassword(password)
-    await user.save()
-
-    res.statusCode = 200
-    res.json({ success: true })
   } else {
     res.statusCode = 405
     res.json({ error: "method_not_allowed" })

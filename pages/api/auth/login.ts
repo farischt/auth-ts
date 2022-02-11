@@ -1,11 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next"
+
 import Backend from "@/server/lib"
 import Database from "@/server/database"
-
-interface LoginInput {
-  email: string
-  password: string
-}
+import type { LoginInput, LoginOutput, ApiError } from "../../../api/types"
 
 interface ExtendedNextApiRequest extends NextApiRequest {
   body: LoginInput
@@ -13,7 +10,7 @@ interface ExtendedNextApiRequest extends NextApiRequest {
 
 export default async function handler(
   req: ExtendedNextApiRequest,
-  res: NextApiResponse
+  res: NextApiResponse<LoginOutput | ApiError>
 ) {
   if (req.method === "POST") {
     if (typeof req.body.email !== "string") {
@@ -48,8 +45,8 @@ export default async function handler(
         loggedIn: true,
         id: user.id,
         email: user.email,
-        first_name: user.firstName,
-        last_name: user.lastName,
+        firstName: user.firstName,
+        lastName: user.lastName,
       })
     } catch (error) {
       res.statusCode = 500
