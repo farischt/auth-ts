@@ -24,7 +24,7 @@ Our project uses the following technologies :
 Install all the dependencies by running the following command :
 
 ```bash
-yarn add
+yarn install
 ```
 
 Go to /server/database/config/config.json and add your own database configurations. If you are using docker, make sur you started your postgres container.
