@@ -1,7 +1,11 @@
-import { GetServerSideProps } from "next"
 import Head from "next/head"
+import type { LoggedInUser } from "../types"
 
-export default function Home() {
+type Props = {
+  user: LoggedInUser | null
+}
+
+export default function HomePage({ user }: Props) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
@@ -11,7 +15,7 @@ export default function Home() {
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
         <h1 className="text-6xl font-bold">
-          Welcome to{" "}
+          Welcome {user && `${user.firstName} ${user.lastName}`} to{" "}
           <a className="text-blue-600" href="https://nextjs.org">
             Next.js!
           </a>
@@ -82,23 +86,21 @@ export default function Home() {
   )
 }
 
-import Database from "@/server/database"
+import { GetServerSideProps } from "next"
+import Backend from "@/server/lib"
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const user = await Database.User.findOne({
-    where: {
-      id: 1,
-    },
-    include: Database.AuthToken,
-  })
-
-  console.log(JSON.stringify(user, null, 2))
+  const user = await Backend.getAuthenticatedUser(ctx)
 
   return {
     props: {
       user: user && {
+        id: user.id,
+        email: user.email,
         firstName: user.firstName,
+        lastName: user.lastName,
         createdAt: user.createdAt?.toLocaleDateString() || null,
+        updatedAt: user.updatedAt?.toLocaleDateString() || null,
       },
     },
   }

@@ -1,11 +1,13 @@
+import { GetServerSidePropsContext } from "next"
 import cookie from "cookie"
 import formidable, { Fields, Files } from "formidable"
-import { AuthToken } from "../database/models/authtoken"
-import { User } from "../database/models/user"
+
+
+import { User, AuthToken } from "../database/models"
 import Database from "@/server/database"
 
 class Backend {
-  getIpAddress(context: any): any {
+  getIpAddress(context: GetServerSidePropsContext): any {
     return context.req.socket.remoteAddress
   }
 
@@ -15,7 +17,7 @@ class Backend {
     return regexExp.test(id)
   }
 
-  setAuthCookie(context: any, token: string): void {
+  setAuthCookie(context: GetServerSidePropsContext, token: string): void {
     context.res.setHeader(
       "Set-Cookie",
       cookie.serialize("authToken", token, {
@@ -28,7 +30,7 @@ class Backend {
     )
   }
 
-  deleteAuthCookie(context: any): void {
+  deleteAuthCookie(context: GetServerSidePropsContext): void {
     context.res.setHeader(
       "Set-Cookie",
       cookie.serialize("authToken", "", {
@@ -47,7 +49,7 @@ class Backend {
       : true
   }
 
-  async parseMultipart(context: { req: any }) {
+  async parseMultipart(context: any) {
     return await new Promise((resolve, reject) => {
       formidable().parse(
         context.req,
@@ -61,11 +63,14 @@ class Backend {
     })
   }
 
-  async login(context: any, token: string): Promise<void> {
+  async login(
+    context: GetServerSidePropsContext,
+    token: string
+  ): Promise<void> {
     this.setAuthCookie(context, token)
   }
 
-  async logout(context: any): Promise<void> {
+  async logout(context: GetServerSidePropsContext): Promise<void> {
     const token =
       context.req.cookies.authToken &&
       this.isUUID(context.req.cookies.authToken) &&
@@ -75,7 +80,9 @@ class Backend {
     this.deleteAuthCookie(context)
   }
 
-  async getAuthenticatedUser(context: any): Promise<User | null> {
+  async getAuthenticatedUser(
+    context: GetServerSidePropsContext
+  ): Promise<User | null> {
     if (!context.req.cookies.authToken) return null
     const token =
       this.isUUID(context.req.cookies.authToken) &&
