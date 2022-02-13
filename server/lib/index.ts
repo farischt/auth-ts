@@ -2,7 +2,6 @@ import { GetServerSidePropsContext } from "next"
 import cookie from "cookie"
 import formidable, { Fields, Files } from "formidable"
 
-
 import { User, AuthToken } from "../database/models"
 import Database from "@/server/database"
 
@@ -64,7 +63,7 @@ class Backend {
   }
 
   async login(
-    context: GetServerSidePropsContext,
+    context: any,
     token: string
   ): Promise<void> {
     this.setAuthCookie(context, token)
@@ -81,7 +80,7 @@ class Backend {
   }
 
   async getAuthenticatedUser(
-    context: GetServerSidePropsContext
+    context: any
   ): Promise<User | null> {
     if (!context.req.cookies.authToken) return null
     const token =
@@ -94,7 +93,7 @@ class Backend {
       await token.destroy()
       return null
     }
-    return (await Database.User.findByPk(token.userId)) || null
+    return (await Database.User.findByPk(token.userId))
   }
 }
 
