@@ -1,9 +1,14 @@
 {
+  "name": "authentication-system",
+  "version": "2.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "db:clean": "sequelize db:migrate:undo:all && sequelize db:seed:undo:all",
+    "db:update": "sequelize db:migrate",
+    "db:fill": "sequelize db:seed",
+    "dev": "yarn db:update && next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "yarn db:update && next start",
     "lint": "next lint",
     "prettier:apply": "prettier --write .",
     "prettier:check": "prettier --check ."
