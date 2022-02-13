@@ -66,7 +66,6 @@ export default async function handler(
         firstName,
         lastName,
         email,
-        password: null,
       })
 
       await user.setPassword(password)
