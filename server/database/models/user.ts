@@ -7,10 +7,11 @@ interface UserAttributes {
   lastName: string
   email: string
   password: string | null
+  verified: boolean
   createdAt?: Date
   updatedAt?: Date
 }
-interface UserCreationAttributes extends Optional<UserAttributes, "id"> {}
+interface UserCreationAttributes extends Optional<UserAttributes, "id" | "password" | "verified"> {}
 
 export class User
   extends Model<UserAttributes, UserCreationAttributes>
@@ -21,6 +22,7 @@ export class User
   declare lastName: string
   declare email: string
   declare password: string | null
+  declare verified: boolean
   declare createdAt?: Date
   declare updatedAt?: Date
   /**
@@ -83,6 +85,11 @@ export default (sequelize: any) =>
         type: DataTypes.STRING,
         allowNull: true,
       },
+      verified: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
+        allowNull: false
+      }
     },
     {
       sequelize,
