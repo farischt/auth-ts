@@ -34,6 +34,9 @@ export default async function handler(
       } else if (!(await user.checkPassword(req.body.password))) {
         res.statusCode = 401
         return res.json({ error: "invalid_credentials" })
+      } else if(!user.verified) {
+        res.statusCode = 401
+        return res.json({ error: "invalid_credentials" })
       }
 
       const authToken = await Database.AuthToken.create({
