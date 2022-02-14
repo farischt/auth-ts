@@ -71,6 +71,13 @@ export default async function handler(
       await user.setPassword(password)
       await user.save()
 
+      const accountConfirmationToken =
+        await Database.AccountConfirmationToken.create({
+          userId: user.id,
+        })
+
+      console.log(accountConfirmationToken)
+
       res.statusCode = 200
       res.json({
         success: true,
