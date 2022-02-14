@@ -89,19 +89,12 @@ export default function HomePage({ user }: Props) {
 import { GetServerSideProps } from "next"
 import Backend from "@/server/lib"
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const user = await Backend.getAuthenticatedUser(ctx)
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const user = await Backend.getAuthenticatedUser(context)
 
   return {
     props: {
-      user: user && {
-        id: user.id,
-        email: user.email,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        createdAt: user.createdAt?.toLocaleDateString() || null,
-        updatedAt: user.updatedAt?.toLocaleDateString() || null,
-      },
+      user: user?.toJSON() || null,
     },
   }
 }
