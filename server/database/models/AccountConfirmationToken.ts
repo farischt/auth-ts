@@ -43,7 +43,7 @@ export class AccountConfirmationToken
     }
   }
 }
-export default (sequelize: any) =>
+const AccountConfirmationTokenModel = (sequelize: any) =>
   AccountConfirmationToken.init(
     {
       token: {
@@ -68,3 +68,5 @@ export default (sequelize: any) =>
       modelName: "AccountConfirmationToken",
     }
   )
+
+export default AccountConfirmationTokenModel

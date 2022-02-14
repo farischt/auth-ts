@@ -1,4 +1,4 @@
-import { Sequelize, Model, DataTypes, Optional } from "sequelize"
+import { Model, DataTypes, Optional } from "sequelize"
 
 interface AuthTokenAttributes {
   token: string
@@ -40,7 +40,7 @@ export class AuthToken
     }
   }
 }
-export default (sequelize: any) =>
+const AuthTokenModel = (sequelize: any) =>
   AuthToken.init(
     {
       token: {
@@ -65,3 +65,5 @@ export default (sequelize: any) =>
       modelName: "AuthToken",
     }
   )
+
+export default AuthTokenModel

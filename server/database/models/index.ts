@@ -10,7 +10,7 @@ export { AuthToken }
 export { AccountConfirmationToken }
 
 // Exporting model init
-export default (sequelize: any) => {
+const Models = (sequelize: any) => {
   const User = UserModel(sequelize)
   const AuthToken = AuthTokenModel(sequelize)
   const AccountConfirmationToken = AccountConfirmationTokenModel(sequelize)
@@ -21,3 +21,5 @@ export default (sequelize: any) => {
     AccountConfirmationToken,
   }
 }
+
+export default Models

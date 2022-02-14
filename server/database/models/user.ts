@@ -85,7 +85,7 @@ export class User
   }
 }
 
-export default (sequelize: any) =>
+const UserModel = (sequelize: any) =>
   User.init(
     {
       id: {
@@ -122,3 +122,5 @@ export default (sequelize: any) =>
       modelName: "User",
     }
   )
+
+export default UserModel

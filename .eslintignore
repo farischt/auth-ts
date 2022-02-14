@@ -1,0 +1,5 @@
+/server/database/migrations
+/server/database/seeders
+/.next/
+/node_modules
+*.tsbuildinfo
