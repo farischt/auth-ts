@@ -62,10 +62,7 @@ class Backend {
     })
   }
 
-  async login(
-    context: any,
-    token: string
-  ): Promise<void> {
+  async login(context: any, token: string): Promise<void> {
     this.setAuthCookie(context, token)
   }
 
@@ -79,9 +76,7 @@ class Backend {
     this.deleteAuthCookie(context)
   }
 
-  async getAuthenticatedUser(
-    context: any
-  ): Promise<User | null> {
+  async getAuthenticatedUser(context: any): Promise<User | null> {
     if (!context.req.cookies.authToken) return null
     const token =
       this.isUUID(context.req.cookies.authToken) &&
@@ -93,7 +88,7 @@ class Backend {
       await token.destroy()
       return null
     }
-    return (await Database.User.findByPk(token.userId))
+    return await Database.User.findByPk(token.userId)
   }
 }
 

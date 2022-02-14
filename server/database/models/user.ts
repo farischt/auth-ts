@@ -1,4 +1,12 @@
-import { Model, Optional, DataTypes, Op } from "sequelize"
+import {
+  Model,
+  Optional,
+  DataTypes,
+  Op,
+  HasManyGetAssociationsMixin,
+  HasOneGetAssociationMixin,
+} from "sequelize"
+import { AuthToken, AccountConfirmationToken } from "./index"
 import bcryptjs from "bcryptjs"
 
 interface UserAttributes {
@@ -11,7 +19,8 @@ interface UserAttributes {
   createdAt?: Date
   updatedAt?: Date
 }
-interface UserCreationAttributes extends Optional<UserAttributes, "id" | "password" | "verified"> {}
+interface UserCreationAttributes
+  extends Optional<UserAttributes, "id" | "password" | "verified"> {}
 
 export class User
   extends Model<UserAttributes, UserCreationAttributes>
@@ -25,6 +34,9 @@ export class User
   declare verified: boolean
   declare createdAt?: Date
   declare updatedAt?: Date
+
+  declare getAuthTokens: HasManyGetAssociationsMixin<AuthToken>
+  declare getAccountConfirmationToken: HasOneGetAssociationMixin<AccountConfirmationToken>
   /**
    * Helper method for defining associations.
    * This method is not a part of Sequelize lifecycle.
@@ -32,6 +44,9 @@ export class User
    */
   static associate(models: any) {
     User.hasMany(models.AuthToken, {
+      foreignKey: "userId",
+    })
+    User.hasOne(models.AccountConfirmationToken, {
       foreignKey: "userId",
     })
   }
@@ -56,6 +71,17 @@ export class User
 
   async checkPassword(password: string) {
     return this.password && (await bcryptjs.compare(password, this.password))
+  }
+
+  toJSON() {
+    return {
+      id: this.id,
+      email: this.email,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      createdAt: this.createdAt?.toString() || null,
+      updatedAt: this.updatedAt?.toString() || null,
+    }
   }
 }
 
@@ -88,8 +114,8 @@ export default (sequelize: any) =>
       verified: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
-        allowNull: false
-      }
+        allowNull: false,
+      },
     },
     {
       sequelize,

@@ -38,4 +38,5 @@ const sync = false
   }
 })()
 
-export default { sequelize, ...models }
+const Database = { sequelize, ...models }
+export default Database

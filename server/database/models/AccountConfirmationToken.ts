@@ -1,17 +1,20 @@
-import { Sequelize, Model, DataTypes, Optional } from "sequelize"
+import { Model, DataTypes, Optional } from "sequelize"
 
-interface AuthTokenAttributes {
+interface AccountConfirmationTokenAttributes {
   token: string
   userId: number
   createdAt?: Date
   updatedAt?: Date
 }
-interface AuthTokenCreationAttributes
-  extends Optional<AuthTokenAttributes, "token"> {}
+interface AccountConfirmationTokenCreationAttributes
+  extends Optional<AccountConfirmationTokenAttributes, "token"> {}
 
-export class AuthToken
-  extends Model<AuthTokenAttributes, AuthTokenCreationAttributes>
-  implements AuthTokenAttributes
+export class AccountConfirmationToken
+  extends Model<
+    AccountConfirmationTokenAttributes,
+    AccountConfirmationTokenCreationAttributes
+  >
+  implements AccountConfirmationTokenAttributes
 {
   declare token: string
   declare userId: number
@@ -24,7 +27,7 @@ export class AuthToken
    * The `models/index` file will call this method automatically.
    */
   static associate(models: any) {
-    AuthToken.belongsTo(models.User, {
+    AccountConfirmationToken.belongsTo(models.User, {
       foreignKey: "userId",
       onUpdate: "CASCADE",
       onDelete: "CASCADE",
@@ -41,7 +44,7 @@ export class AuthToken
   }
 }
 export default (sequelize: any) =>
-  AuthToken.init(
+  AccountConfirmationToken.init(
     {
       token: {
         type: DataTypes.UUID,
@@ -62,6 +65,6 @@ export default (sequelize: any) =>
     },
     {
       sequelize,
-      modelName: "AuthToken",
+      modelName: "AccountConfirmationToken",
     }
   )
