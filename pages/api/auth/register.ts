@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 
 import Database from "@/server/database"
+import EmailApi from "@/server/mails"
+import Template from "@/server/mails/templates"
 import type {
   RegistrationInput,
   RegistrationOutput,
@@ -76,7 +78,19 @@ export default async function handler(
           userId: user.id,
         })
 
-      console.log(accountConfirmationToken)
+      const emailContext = {
+        username: user.firstName,
+        link: `http://localhost:3000/${encodeURIComponent(
+          accountConfirmationToken.token
+        )}`,
+      }
+
+      await EmailApi.sendMail(
+        user.email,
+        emailContext,
+        Template.accountConfirmation,
+        "Account Confirmation"
+      )
 
       res.statusCode = 200
       res.json({
@@ -88,6 +102,7 @@ export default async function handler(
       })
     } catch (error) {
       res.statusCode = 500
+      console.log(error)
       res.json({ error: "internal_server_error" })
     }
   } else {
