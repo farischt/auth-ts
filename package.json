@@ -16,6 +16,7 @@
     "check:next": "yarn tsc --noEmit && yarn lint && yarn prettier --write ."
   },
   "dependencies": {
+    "axios": "^0.26.0",
     "bcryptjs": "^2.4.3",
     "cookie": "^0.4.2",
     "formidable": "^2.0.1",
@@ -28,6 +29,7 @@
     "sequelize": "^6.15.1"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.4.0",
     "@types/bcryptjs": "^2.4.2",
     "@types/cookie": "^0.4.1",
     "@types/formidable": "^2.0.4",
