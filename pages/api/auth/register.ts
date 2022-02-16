@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 
 import Database from "@/server/database"
-import EmailApi from "@/server/mails"
+import EmailServer from "@/server/mails"
 import Template from "@/server/mails/templates"
 import type {
   RegistrationInput,
@@ -85,7 +85,7 @@ export default async function handler(
         )}`,
       }
 
-      await EmailApi.sendMail(
+      await EmailServer.sendMail(
         user.email,
         emailContext,
         Template.accountConfirmation,

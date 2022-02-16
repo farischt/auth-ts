@@ -5,7 +5,7 @@ import formidable, { Fields, Files } from "formidable"
 import { User, AuthToken } from "../database/models"
 import Database from "@/server/database"
 
-class Backend {
+class Server {
   getIpAddress(context: GetServerSidePropsContext): any {
     return context.req.socket.remoteAddress
   }
@@ -66,7 +66,7 @@ class Backend {
     this.setAuthCookie(context, token)
   }
 
-  async logout(context: GetServerSidePropsContext): Promise<void> {
+  async logout(context: any): Promise<void> {
     const token =
       context.req.cookies.authToken &&
       this.isUUID(context.req.cookies.authToken) &&
@@ -92,4 +92,4 @@ class Backend {
   }
 }
 
-export default new Backend()
+export default new Server()
