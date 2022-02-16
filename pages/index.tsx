@@ -1,15 +1,17 @@
 import Head from "next/head"
+import Link from "next/link"
+
 import type { LoggedInUser } from "../types"
 
-type Props = {
+type HomePageProps = {
   user: LoggedInUser | null
 }
 
-export default function HomePage({ user }: Props) {
+export default function HomePage({ user }: HomePageProps) {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
-        <title>Create Next App</title>
+        <title>Authentication System</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -17,7 +19,7 @@ export default function HomePage({ user }: Props) {
         <h1 className="text-6xl font-bold">
           Welcome {user && `${user.firstName} ${user.lastName}`} to{" "}
           <a className="text-blue-600" href="https://nextjs.org">
-            Next.js!
+            Authentication System!
           </a>
         </h1>
 
@@ -29,6 +31,24 @@ export default function HomePage({ user }: Props) {
         </p>
 
         <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
+          <Link href="/auth/login">
+            <a className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600">
+              <h3 className="text-2xl font-bold">Sign in &rarr;</h3>
+              <p className="mt-4 text-xl">
+                Sign in and use your AS account for free.
+              </p>
+            </a>
+          </Link>
+
+          <Link href="/auth/register">
+            <a className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600">
+              <h3 className="text-2xl font-bold">Sign up &rarr;</h3>
+              <p className="mt-4 text-xl">
+                Sign up and get an AS account for free.
+              </p>
+            </a>
+          </Link>
+
           <a
             href="https://nextjs.org/docs"
             className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
@@ -87,10 +107,10 @@ export default function HomePage({ user }: Props) {
 }
 
 import { GetServerSideProps } from "next"
-import Backend from "@/server/lib"
+import Server from "@/server/lib"
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const user = await Backend.getAuthenticatedUser(context)
+  const user = await Server.getAuthenticatedUser(context)
 
   return {
     props: {
