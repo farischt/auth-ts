@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 
-import Backend from "@/server/lib"
+import Server from "@/server/lib"
 import Database from "@/server/database"
 import type { LoginInput, LoginOutput, ApiError } from "../../../api/types"
 
@@ -22,7 +22,7 @@ export default async function handler(
     }
 
     try {
-      if (await Backend.getAuthenticatedUser({ req, res })) {
+      if (await Server.getAuthenticatedUser({ req, res })) {
         res.statusCode = 403
         return res.json({ error: "already_logged_in" })
       }
@@ -42,7 +42,7 @@ export default async function handler(
       const authToken = await Database.AuthToken.create({
         userId: user.id,
       })
-      await Backend.login({ req, res }, authToken.token)
+      await Server.login({ req, res }, authToken.token)
       res.statusCode = 200
       res.json({
         loggedIn: true,
