@@ -1,5 +1,5 @@
 import axios from "axios"
-import type { LoginInput } from "./types"
+import type { LoginInput, RegistrationInput } from "./types"
 
 export default class AuthApi {
   private static uri = "/api/auth"
@@ -10,5 +10,9 @@ export default class AuthApi {
 
   public static async logout() {
     return await axios.post(`${this.uri}/logout`)
+  }
+
+  public static async register(input: RegistrationInput) {
+    return await axios.post(`${this.uri}/register`, input)
   }
 }
