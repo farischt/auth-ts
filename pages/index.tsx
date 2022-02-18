@@ -2,6 +2,7 @@ import Head from "next/head"
 import Link from "next/link"
 
 import type { LoggedInUser } from "../types"
+import LogoutForm from "../components/forms/LogoutForm"
 
 type HomePageProps = {
   user: LoggedInUser | null
@@ -17,37 +18,36 @@ export default function HomePage({ user }: HomePageProps) {
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
         <h1 className="text-6xl font-bold">
-          Welcome {user && `${user.firstName} ${user.lastName}`} to{" "}
+          Welcome {user && user.firstName} to{" "}
           <a className="text-blue-600" href="https://nextjs.org">
             Authentication System!
           </a>
         </h1>
 
-        <p className="mt-3 text-2xl">
-          Get started by editing{" "}
-          <code className="rounded-md bg-gray-100 p-3 font-mono text-lg">
-            pages/index.tsx
-          </code>
-        </p>
+        <div className="mt-3">{user && <LogoutForm />}</div>
 
         <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
-          <Link href="/auth/login">
-            <a className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600">
-              <h3 className="text-2xl font-bold">Sign in &rarr;</h3>
-              <p className="mt-4 text-xl">
-                Sign in and use your AS account for free.
-              </p>
-            </a>
-          </Link>
+          {!user && (
+            <>
+              <Link href="/auth/login">
+                <a className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600">
+                  <h3 className="text-2xl font-bold">Sign in &rarr;</h3>
+                  <p className="mt-4 text-xl">
+                    Sign in and use your AS account for free.
+                  </p>
+                </a>
+              </Link>
 
-          <Link href="/auth/register">
-            <a className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600">
-              <h3 className="text-2xl font-bold">Sign up &rarr;</h3>
-              <p className="mt-4 text-xl">
-                Sign up and get an AS account for free.
-              </p>
-            </a>
-          </Link>
+              <Link href="/auth/register">
+                <a className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600">
+                  <h3 className="text-2xl font-bold">Sign up &rarr;</h3>
+                  <p className="mt-4 text-xl">
+                    Sign up and get an AS account for free.
+                  </p>
+                </a>
+              </Link>
+            </>
+          )}
 
           <a
             href="https://nextjs.org/docs"
