@@ -1,16 +1,12 @@
 import { useState } from "react"
 import { useRouter } from "next/router"
 
+import type { LoginInput } from "../../types"
 import { AuthApi } from "../../api"
-
-type Credentials = {
-  email: string
-  password: string
-}
 
 const LoginForm: React.FunctionComponent = () => {
   const router = useRouter()
-  const [credentials, setCredentials] = useState<Credentials>({
+  const [credentials, setCredentials] = useState<LoginInput>({
     email: "",
     password: "",
   })
@@ -58,6 +54,7 @@ const LoginForm: React.FunctionComponent = () => {
             type="email"
             autoComplete="email"
             required
+            value={credentials.email}
             onChange={handleCredentialsChange}
             className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-blue-600 focus:outline-none focus:ring-blue-600 sm:text-sm"
           />
@@ -77,6 +74,7 @@ const LoginForm: React.FunctionComponent = () => {
             type="password"
             autoComplete="current-password"
             required
+            value={credentials.password}
             onChange={handleCredentialsChange}
             minLength={8}
             className="block w-full appearance-none rounded-md border border-gray-300 px-3 py-2 placeholder-gray-400 shadow-sm focus:border-blue-600 focus:outline-none focus:ring-blue-600 sm:text-sm"
