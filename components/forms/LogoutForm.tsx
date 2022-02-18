@@ -18,7 +18,7 @@ const LogoutForm: React.FunctionComponent = () => {
     >
       <button
         type="submit"
-        className="mt-3 w-1/2 rounded bg-blue-600 px-2 py-4 text-center text-white"
+        className="mt-3 rounded bg-blue-600 px-8 py-4 text-center text-sm text-white"
       >
         Sign out
       </button>
