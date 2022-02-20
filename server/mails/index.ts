@@ -2,7 +2,7 @@ import * as nodemailer from "nodemailer"
 import * as handlebars from "handlebars"
 import * as fs from "fs"
 import * as path from "path"
-import CONFIG from "./config/config.json"
+import CONFIG from "server/mails/config/config.json"
 
 export default class EmailServer {
   static readonly transporter = nodemailer.createTransport({

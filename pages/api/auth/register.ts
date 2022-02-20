@@ -1,13 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 
-import Database from "@/server/database"
-import EmailServer from "@/server/mails"
-import Template from "@/server/mails/templates"
-import type {
-  RegistrationInput,
-  RegistrationOutput,
-  ApiError,
-} from "../../../api/types"
+import Database from "server/database"
+import EmailServer from "server/mails"
+import Template from "server/mails/templates"
+import type { RegistrationInput, RegistrationOutput, ApiError } from "api/types"
 
 interface ExtendedNextApiRequest extends NextApiRequest {
   body: RegistrationInput

@@ -1,8 +1,8 @@
 import { useState } from "react"
 import { useTranslation } from "next-i18next"
 
-import type { RegistrationInput } from "../../types"
-import { AuthApi } from "../../api"
+import type { RegistrationInput } from "types"
+import { AuthApi } from "api"
 
 const RegistrationForm: React.FunctionComponent = () => {
   const { t } = useTranslation("common")

@@ -1,8 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 
-import Server from "@/server/lib"
-import Database from "@/server/database"
-import type { LoginInput, LoginOutput, ApiError } from "../../../api/types"
+import Server from "server/lib"
+import Database from "server/database"
+import type { LoginInput, LoginOutput, ApiError } from "api/types"
 
 interface ExtendedNextApiRequest extends NextApiRequest {
   body: LoginInput

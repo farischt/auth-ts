@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from "next"
-import Server from "@/server/lib"
+import Server from "server/lib"
 
 export default async function handler(
   req: NextApiRequest,

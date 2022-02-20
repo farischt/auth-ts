@@ -2,8 +2,8 @@ import { GetServerSidePropsContext } from "next"
 import cookie from "cookie"
 import formidable, { Fields, Files } from "formidable"
 
-import { User, AuthToken } from "../database/models"
-import Database from "@/server/database"
+import { User, AuthToken } from "server/database/models"
+import Database from "server/database"
 
 class Server {
   getIpAddress(context: GetServerSidePropsContext): any {

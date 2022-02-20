@@ -2,8 +2,8 @@ import { useState } from "react"
 import { useRouter } from "next/router"
 import { useTranslation } from "next-i18next"
 
-import type { LoginInput } from "../../types"
-import { AuthApi } from "../../api"
+import type { LoginInput } from "types"
+import { AuthApi } from "api"
 
 const LoginForm: React.FunctionComponent = () => {
   const router = useRouter()
@@ -105,6 +105,10 @@ const LoginForm: React.FunctionComponent = () => {
             {t("components.forms.login.forgot")}
           </a>
         </div>
+      </div>
+
+      <div className="flex items-center justify-center">
+        {error && <p className="text-sm text-red-600"> {error} </p>}
       </div>
 
       <div>

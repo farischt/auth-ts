@@ -2,9 +2,9 @@ import Link from "next/link"
 import Head from "next/head"
 import { useTranslation } from "next-i18next"
 
-import type { LoggedInUser } from "../../types"
-import RegistrationForm from "../../components/forms/RegistrationForm"
-import LogoutForm from "../../components/forms/LogoutForm"
+import type { LoggedInUser } from "types"
+import RegistrationForm from "components/forms/RegistrationForm"
+import LogoutForm from "components/forms/LogoutForm"
 
 type RegisterPageProps = {
   user: LoggedInUser | null
@@ -66,7 +66,7 @@ export default function RegisterPage({ user }: RegisterPageProps) {
 import { GetServerSideProps, GetServerSidePropsContext } from "next"
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"
 
-import Server from "@/server/lib"
+import Server from "server/lib"
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext

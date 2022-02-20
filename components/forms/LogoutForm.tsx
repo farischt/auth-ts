@@ -1,5 +1,5 @@
 import { useRouter } from "next/router"
-import { AuthApi } from "../../api"
+import { AuthApi } from "api"
 
 const LogoutForm: React.FunctionComponent = () => {
   const router = useRouter()
