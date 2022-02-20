@@ -1,0 +1,45 @@
+{
+  "title": "Authentication System",
+  "pages": {
+    "home": {
+      "greetingStart": "Bienvenue ",
+      "greetingEnd": " sur Authentication system",
+      "links": {
+        "login": {
+          "title": "Se connecter",
+          "description": "Se connecter et utiliser mon compte AS."
+        },
+        "register": {
+          "title": "S'inscrire",
+          "description": "S'inscrire et utiliser mon compte AS."
+        }
+      }
+    },
+    "login": {
+      "title": "Connectez-vous à votre compte",
+      "subtitle": "Développer par Authentication System"
+    },
+    "register": {
+      "title": "S'inscire",
+      "subtitle": "Développer par Authentication System"
+    }
+  },
+  "components": {
+    "forms": {
+      "login": {
+        "email": "Adresse e-mail",
+        "password": "Mot de passe",
+        "remember": "Se souvenir de moi",
+        "forgot": "Mot de passe oublié ?",
+        "send": "Se connecter"
+      },
+      "register": {
+        "email": "Adresse e-mail",
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "password": "Mot de passe",
+        "send": "S'inscrire"
+      }
+    }
+  }
+}

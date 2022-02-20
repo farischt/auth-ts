@@ -1,0 +1,45 @@
+{
+  "title": "Authentication System",
+  "pages": {
+    "home": {
+      "greetingStart": "Welcome ",
+      "greetingEnd": " to Authentication system",
+      "links": {
+        "login": {
+          "title": "Sign in",
+          "description": "Sign in and use your AS account for free."
+        },
+        "register": {
+          "title": "Sign up",
+          "description": "Sign up and get an AS account for free."
+        }
+      }
+    },
+    "login": {
+      "title": "Sign in to your account",
+      "subtitle": "Powered by Authentication System"
+    },
+    "register": {
+      "title": "Register",
+      "subtitle": "Powered by Authentication System"
+    }
+  },
+  "components": {
+    "forms": {
+      "login": {
+        "email": "Email address",
+        "password": "Password",
+        "remember": "Remember me",
+        "forgot": "Forgot your password ?",
+        "send": "Sign in"
+      },
+      "register": {
+        "email": "Email address",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "password": "Password",
+        "send": "Register"
+      }
+    }
+  }
+}

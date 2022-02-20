@@ -22,6 +22,7 @@
     "formidable": "^2.0.1",
     "handlebars": "^4.7.7",
     "next": "latest",
+    "next-i18next": "^10.3.0",
     "nodemailer": "^6.7.2",
     "pg": "^8.7.3",
     "react": "^17.0.2",

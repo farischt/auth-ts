@@ -1,11 +1,13 @@
 import { useState } from "react"
 import { useRouter } from "next/router"
+import { useTranslation } from "next-i18next"
 
 import type { LoginInput } from "../../types"
 import { AuthApi } from "../../api"
 
 const LoginForm: React.FunctionComponent = () => {
   const router = useRouter()
+  const { t } = useTranslation("common")
   const [credentials, setCredentials] = useState<LoginInput>({
     email: "",
     password: "",
@@ -46,7 +48,7 @@ const LoginForm: React.FunctionComponent = () => {
           htmlFor="email"
           className="block text-sm font-medium text-gray-700"
         >
-          Email address
+          {t("components.forms.login.email")}
         </label>
         <div className="mt-1">
           <input
@@ -66,7 +68,7 @@ const LoginForm: React.FunctionComponent = () => {
           htmlFor="password"
           className="block text-sm font-medium text-gray-700"
         >
-          Password
+          {t("components.forms.login.password")}
         </label>
         <div className="mt-1">
           <input
@@ -94,13 +96,13 @@ const LoginForm: React.FunctionComponent = () => {
             htmlFor="remember-me"
             className="ml-2 block text-sm text-gray-900"
           >
-            Remember me
+            {t("components.forms.login.remember")}
           </label>
         </div>
 
         <div className="text-sm">
           <a href="#" className="font-medium text-blue-600 hover:text-blue-700">
-            Forgot your password?
+            {t("components.forms.login.forgot")}
           </a>
         </div>
       </div>
@@ -111,7 +113,7 @@ const LoginForm: React.FunctionComponent = () => {
           className="flex w-full justify-center rounded-md border border-transparent bg-blue-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 disabled:opacity-50"
           disabled={loading || credentials.password.length < 8}
         >
-          Sign in
+          {t("components.forms.login.send")}
         </button>
       </div>
     </form>

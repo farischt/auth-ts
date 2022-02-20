@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Head from "next/head"
+import { useTranslation } from "next-i18next"
 
 import type { LoggedInUser } from "../../types"
 import RegistrationForm from "../../components/forms/RegistrationForm"
@@ -10,6 +11,8 @@ type RegisterPageProps = {
 }
 
 export default function RegisterPage({ user }: RegisterPageProps) {
+  const { t } = useTranslation("common")
+
   if (user) {
     return (
       <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -20,17 +23,7 @@ export default function RegisterPage({ user }: RegisterPageProps) {
             </Link>{" "}
             Logged in as {user.firstName}
           </h2>
-
           <LogoutForm />
-
-          <p className="mt-2 text-center text-sm text-gray-600">
-            <a
-              href="#"
-              className="font-medium text-blue-600 hover:text-blue-700"
-            >
-              Powered by Authentication System
-            </a>
-          </p>
         </div>
       </div>
     )
@@ -48,14 +41,14 @@ export default function RegisterPage({ user }: RegisterPageProps) {
             <Link href="/">
               <a className="text-blue-600 hover:text-blue-700"> &larr;</a>
             </Link>{" "}
-            Register for free !
+            {t("pages.register.title")}
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             <a
               href="#"
               className="font-medium text-blue-600 hover:text-blue-700"
             >
-              Powered by Authentication System
+              {t("pages.register.subtitle")}
             </a>
           </p>
         </div>
@@ -70,8 +63,10 @@ export default function RegisterPage({ user }: RegisterPageProps) {
   )
 }
 
-import Server from "@/server/lib"
 import { GetServerSideProps, GetServerSidePropsContext } from "next"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+
+import Server from "@/server/lib"
 
 export const getServerSideProps: GetServerSideProps = async (
   context: GetServerSidePropsContext
@@ -80,6 +75,7 @@ export const getServerSideProps: GetServerSideProps = async (
 
   return {
     props: {
+      ...(await serverSideTranslations(context.locale ?? "en", ["common"])),
       user: user?.toJSON() || null,
     },
   }

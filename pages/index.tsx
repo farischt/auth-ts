@@ -1,5 +1,6 @@
 import Head from "next/head"
 import Link from "next/link"
+import { useTranslation } from "next-i18next"
 
 import type { LoggedInUser } from "../types"
 import LogoutForm from "../components/forms/LogoutForm"
@@ -9,6 +10,8 @@ type HomePageProps = {
 }
 
 export default function HomePage({ user }: HomePageProps) {
+  const { t } = useTranslation("common")
+
   return (
     <div className="flex min-h-screen flex-col items-center justify-center py-2">
       <Head>
@@ -18,9 +21,12 @@ export default function HomePage({ user }: HomePageProps) {
 
       <main className="flex w-full flex-1 flex-col items-center justify-center px-20 text-center">
         <h1 className="text-6xl font-bold">
-          Welcome {user && user.firstName} to{" "}
-          <a className="text-blue-600" href="https://nextjs.org">
-            Authentication System!
+          {t("pages.home.greetingStart")} {user && user.firstName}
+          <a
+            className="text-blue-600"
+            href="https://github.com/Farischt/auth-ts"
+          >
+            {t("pages.home.greetingEnd")}
           </a>
         </h1>
 
@@ -31,18 +37,22 @@ export default function HomePage({ user }: HomePageProps) {
             <>
               <Link href="/auth/login">
                 <a className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600">
-                  <h3 className="text-2xl font-bold">Sign in &rarr;</h3>
+                  <h3 className="text-2xl font-bold">
+                    {t("pages.home.links.login.title")} &rarr;
+                  </h3>
                   <p className="mt-4 text-xl">
-                    Sign in and use your AS account for free.
+                    {t("pages.home.links.login.description")}
                   </p>
                 </a>
               </Link>
 
               <Link href="/auth/register">
                 <a className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600">
-                  <h3 className="text-2xl font-bold">Sign up &rarr;</h3>
+                  <h3 className="text-2xl font-bold">
+                    {t("pages.home.links.register.title")} &rarr;
+                  </h3>
                   <p className="mt-4 text-xl">
-                    Sign up and get an AS account for free.
+                    {t("pages.home.links.register.description")}
                   </p>
                 </a>
               </Link>
@@ -106,14 +116,19 @@ export default function HomePage({ user }: HomePageProps) {
   )
 }
 
-import { GetServerSideProps } from "next"
+import { GetServerSideProps, GetServerSidePropsContext } from "next"
+import { serverSideTranslations } from "next-i18next/serverSideTranslations"
+
 import Server from "@/server/lib"
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
+export const getServerSideProps: GetServerSideProps = async (
+  context: GetServerSidePropsContext
+) => {
   const user = await Server.getAuthenticatedUser(context)
 
   return {
     props: {
+      ...(await serverSideTranslations(context.locale ?? "en", ["common"])),
       user: user?.toJSON() || null,
     },
   }

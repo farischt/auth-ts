@@ -1,9 +1,12 @@
 import { useState } from "react"
+import { useTranslation } from "next-i18next"
 
 import type { RegistrationInput } from "../../types"
 import { AuthApi } from "../../api"
 
 const RegistrationForm: React.FunctionComponent = () => {
+  const { t } = useTranslation("common")
+
   const [user, setUser] = useState<RegistrationInput>({
     email: "",
     firstName: "",
@@ -42,7 +45,7 @@ const RegistrationForm: React.FunctionComponent = () => {
           htmlFor="email"
           className="block text-sm font-medium text-gray-700"
         >
-          Email address
+          {t("components.forms.register.email")}
         </label>
         <div className="mt-1">
           <input
@@ -62,7 +65,7 @@ const RegistrationForm: React.FunctionComponent = () => {
           htmlFor="email"
           className="block text-sm font-medium text-gray-700"
         >
-          First name
+          {t("components.forms.register.firstName")}
         </label>
         <div className="mt-1">
           <input
@@ -81,7 +84,7 @@ const RegistrationForm: React.FunctionComponent = () => {
           htmlFor="email"
           className="block text-sm font-medium text-gray-700"
         >
-          Last name
+          {t("components.forms.register.lastName")}
         </label>
         <div className="mt-1">
           <input
@@ -100,7 +103,7 @@ const RegistrationForm: React.FunctionComponent = () => {
           htmlFor="password"
           className="block text-sm font-medium text-gray-700"
         >
-          Password
+          {t("components.forms.register.password")}
         </label>
         <div className="mt-1">
           <input
@@ -121,7 +124,7 @@ const RegistrationForm: React.FunctionComponent = () => {
           htmlFor="password"
           className="block text-sm font-medium text-gray-700"
         >
-          Password
+          {t("components.forms.register.password")}
         </label>
         <div className="mt-1">
           <input
@@ -152,7 +155,7 @@ const RegistrationForm: React.FunctionComponent = () => {
             user.password !== user.repeatPassword
           }
         >
-          Sign in
+          {t("components.forms.register.send")}
         </button>
       </div>
     </form>
