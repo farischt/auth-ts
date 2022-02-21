@@ -34,7 +34,7 @@ export default function HomePage({ user }: HomePageProps) {
 
         <div className="mt-3">{user && <LogoutForm />}</div>
 
-        <div className="mt-6 flex max-w-4xl flex-wrap items-center justify-around sm:w-full">
+        <div className="mt-6 flex max-w-4xl flex-wrap items-stretch justify-around sm:w-full">
           {!user && (
             <>
               <Link href="/auth/login">
