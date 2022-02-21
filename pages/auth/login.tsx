@@ -15,24 +15,30 @@ export default function LoginPage({ user }: LoginPageProps) {
 
   if (user) {
     return (
-      <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
-        <div className="sm:mx-auto sm:w-full sm:max-w-md">
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            <Link href="/">
-              <a className="text-blue-600 hover:text-blue-700"> &larr;</a>
-            </Link>{" "}
-            Logged in as {user.firstName}
-          </h2>
-          <LogoutForm />
+      <>
+        <Head>
+          <title>As - {t("pages.login.title")}</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">
+          <div className="sm:mx-auto sm:w-full sm:max-w-md">
+            <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+              <Link href="/">
+                <a className="text-blue-600 hover:text-blue-700"> &larr;</a>
+              </Link>{" "}
+              {t("pages.login.greeting")} {user.firstName}
+            </h2>
+            <LogoutForm />
+          </div>
         </div>
-      </div>
+      </>
     )
   }
 
   return (
     <>
       <Head>
-        <title>Sign in</title>
+        <title>As - {t("pages.login.title")}</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="flex min-h-full flex-col justify-center py-12 sm:px-6 lg:px-8">

@@ -12,14 +12,32 @@
         "register": {
           "title": "S'inscrire",
           "description": "S'inscrire et utiliser mon compte AS."
+        },
+        "documentation": {
+          "title": "Documentation",
+          "description": "Trouvez des informations approfondies sur les fonctionnalités et l'API de Next.js."
+        },
+        "learn": {
+          "title": "Apprendre",
+          "description": "Apprenez à connaître Next.js dans un cours interactif avec des quiz !"
+        },
+        "examples": {
+          "title": "Exemples",
+          "description": "Découvrez et déployez des exemples de projets Next.js."
+        },
+        "deploy": {
+          "title": "Déployer",
+          "description": "Déployez instantanément votre site Next.js vers une URL publique avec Vercel."
         }
       }
     },
     "login": {
+      "greeting": "Connectez en tant que",
       "title": "Connectez-vous à votre compte",
       "subtitle": "Développer par Authentication System"
     },
     "register": {
+      "greeting": "Connectez en tant que",
       "title": "S'inscire",
       "subtitle": "Développer par Authentication System"
     }
@@ -39,6 +57,9 @@
         "lastName": "Nom",
         "password": "Mot de passe",
         "send": "S'inscrire"
+      },
+      "logout": {
+        "text": "Se déconnecter"
       }
     }
   }

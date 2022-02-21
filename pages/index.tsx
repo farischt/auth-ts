@@ -25,6 +25,8 @@ export default function HomePage({ user }: HomePageProps) {
           <a
             className="text-blue-600"
             href="https://github.com/Farischt/auth-ts"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             {t("pages.home.greetingEnd")}
           </a>
@@ -61,41 +63,57 @@ export default function HomePage({ user }: HomePageProps) {
 
           <a
             href="https://nextjs.org/docs"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
           >
-            <h3 className="text-2xl font-bold">Documentation &rarr;</h3>
+            <h3 className="text-2xl font-bold">
+              {t("pages.home.links.documentation.title")} &rarr;
+            </h3>
             <p className="mt-4 text-xl">
-              Find in-depth information about Next.js features and API.
+              {t("pages.home.links.documentation.description")}
             </p>
           </a>
 
           <a
             href="https://nextjs.org/learn"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
           >
-            <h3 className="text-2xl font-bold">Learn &rarr;</h3>
+            <h3 className="text-2xl font-bold">
+              {t("pages.home.links.learn.title")} &rarr;
+            </h3>
             <p className="mt-4 text-xl">
-              Learn about Next.js in an interactive course with quizzes!
+              {t("pages.home.links.learn.description")}
             </p>
           </a>
 
           <a
             href="https://github.com/vercel/next.js/tree/canary/examples"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
           >
-            <h3 className="text-2xl font-bold">Examples &rarr;</h3>
+            <h3 className="text-2xl font-bold">
+              {t("pages.home.links.examples.title")} &rarr;
+            </h3>
             <p className="mt-4 text-xl">
-              Discover and deploy boilerplate example Next.js projects.
+              {t("pages.home.links.examples.description")}
             </p>
           </a>
 
           <a
             href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+            target="_blank"
+            rel="noopener noreferrer"
             className="mt-6 w-96 rounded-xl border p-6 text-left hover:text-blue-600 focus:text-blue-600"
           >
-            <h3 className="text-2xl font-bold">Deploy &rarr;</h3>
+            <h3 className="text-2xl font-bold">
+              {t("pages.home.links.deploy.title")} &rarr;
+            </h3>
             <p className="mt-4 text-xl">
-              Instantly deploy your Next.js site to a public URL with Vercel.
+              {t("pages.home.links.deploy.description")}
             </p>
           </a>
         </div>

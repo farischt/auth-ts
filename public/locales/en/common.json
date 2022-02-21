@@ -12,14 +12,32 @@
         "register": {
           "title": "Sign up",
           "description": "Sign up and get an AS account for free."
+        },
+        "documentation": {
+          "title": "Documentation",
+          "description": "Find in-depth information about Next.js features and API."
+        },
+        "learn": {
+          "title": "Learn",
+          "description": "Learn about Next.js in an interactive course with quizzes!"
+        },
+        "examples": {
+          "title": "Examples",
+          "description": "Discover and deploy boilerplate example Next.js projects."
+        },
+        "deploy": {
+          "title": "Deploy",
+          "description": "Instantly deploy your Next.js site to a public URL with Vercel."
         }
       }
     },
     "login": {
+      "greeting": "Logged in as",
       "title": "Sign in to your account",
       "subtitle": "Powered by Authentication System"
     },
     "register": {
+      "greeting": "Logged in as",
       "title": "Register",
       "subtitle": "Powered by Authentication System"
     }
@@ -39,6 +57,9 @@
         "lastName": "Last name",
         "password": "Password",
         "send": "Register"
+      },
+      "logout": {
+        "text": "Sign out"
       }
     }
   }
