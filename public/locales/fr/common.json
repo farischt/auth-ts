@@ -40,6 +40,12 @@
       "greeting": "Connectez en tant que",
       "title": "S'inscire",
       "subtitle": "Développer par Authentication System"
+    },
+    "password": {
+      "forgot": {
+        "title": "Mot de passe oublié ?",
+        "subtitle": "Développer par Authentication System"
+      }
     }
   },
   "components": {
@@ -60,6 +66,10 @@
       },
       "logout": {
         "text": "Se déconnecter"
+      },
+      "forgotPassword": {
+        "email": "Adresse e-mail",
+        "send": "Envoyer"
       }
     }
   }

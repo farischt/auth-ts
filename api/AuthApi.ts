@@ -15,4 +15,8 @@ export default class AuthApi {
   public static async register(input: RegistrationInput) {
     return await axios.post(`${this.uri}/register`, input)
   }
+
+  public static async sendPasswordRequestLink(email: string) {
+    return await axios.post(`${this.uri}/password/request`, { email })
+  }
 }

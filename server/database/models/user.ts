@@ -6,7 +6,11 @@ import {
   HasManyGetAssociationsMixin,
   HasOneGetAssociationMixin,
 } from "sequelize"
-import { AuthToken, AccountConfirmationToken } from "./index"
+import {
+  AuthToken,
+  AccountConfirmationToken,
+  PasswordResetToken,
+} from "./index"
 import bcryptjs from "bcryptjs"
 
 interface UserAttributes {
@@ -36,6 +40,7 @@ export class User
   declare updatedAt?: Date
 
   declare getAuthTokens: HasManyGetAssociationsMixin<AuthToken>
+  declare getPasswordResetTokens: HasManyGetAssociationsMixin<PasswordResetToken>
   declare getAccountConfirmationToken: HasOneGetAssociationMixin<AccountConfirmationToken>
   /**
    * Helper method for defining associations.
@@ -47,6 +52,9 @@ export class User
       foreignKey: "userId",
     })
     User.hasOne(models.AccountConfirmationToken, {
+      foreignKey: "userId",
+    })
+    User.hasMany(models.PasswordResetToken, {
       foreignKey: "userId",
     })
   }

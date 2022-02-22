@@ -40,6 +40,12 @@
       "greeting": "Logged in as",
       "title": "Register",
       "subtitle": "Powered by Authentication System"
+    },
+    "password": {
+      "forgot": {
+        "title": "Forgot your password ?",
+        "subtitle": "Powered by Authentication System"
+      }
     }
   },
   "components": {
@@ -60,6 +66,10 @@
       },
       "logout": {
         "text": "Sign out"
+      },
+      "forgotPassword": {
+        "email": "Email address",
+        "send": "Send"
       }
     }
   }
