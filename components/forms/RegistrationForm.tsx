@@ -20,6 +20,7 @@ const RegistrationForm: React.FunctionComponent = () => {
 
   function handleUserChange(event: React.ChangeEvent<HTMLInputElement>) {
     if (error) setError("")
+    if (success) setSuccess("")
     setUser((prevState) => ({
       ...prevState,
       [event.target.id]: event.target.value,
@@ -28,6 +29,8 @@ const RegistrationForm: React.FunctionComponent = () => {
 
   async function handleUserSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    if (error) setError("")
+    if (success) setSuccess("")
     setLoading(true)
     try {
       await AuthApi.register(user)

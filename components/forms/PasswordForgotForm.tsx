@@ -12,11 +12,14 @@ const PasswordForgotForm: React.FunctionComponent = () => {
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     if (error) setError("")
+    if (success) setSuccess("")
     setEmail(event.target.value)
   }
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    if (error) setError("")
+    if (success) setSuccess("")
     setLoading(true)
     try {
       await AuthApi.sendPasswordRequestLink(email)

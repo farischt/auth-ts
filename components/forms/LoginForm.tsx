@@ -27,6 +27,7 @@ const LoginForm: React.FunctionComponent = () => {
     event: React.FormEvent<HTMLFormElement>
   ) {
     event.preventDefault()
+    if (error) setError("")
     setLoading(true)
     try {
       await AuthApi.login(credentials)
