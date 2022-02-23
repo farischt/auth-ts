@@ -31,9 +31,7 @@ export default function HomePage({ user }: HomePageProps) {
             {t("pages.home.greetingEnd")}
           </a>
         </h1>
-
         <div className="mt-3">{user && <LogoutForm />}</div>
-
         <div className="mt-6 flex max-w-4xl flex-wrap items-stretch justify-around sm:w-full">
           {!user && (
             <>
@@ -119,16 +117,26 @@ export default function HomePage({ user }: HomePageProps) {
         </div>
       </main>
 
-      <footer className="flex h-24 w-full items-center justify-center border-t">
+      <footer className="mt-3 flex h-24 w-full flex-col items-center justify-center border-t">
         <a
           className="flex items-center justify-center"
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{" "}
+          {t("pages.home.owner")}
           <img src="/vercel.svg" alt="Vercel Logo" className="ml-2 h-4" />
         </a>
+        <h3 className="mt-2">
+          <a
+            href="https://www.linkedin.com/in/farischtatou1999/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t("pages.home.creator")}{" "}
+            <span className="font-bold"> @Faris Chtatou </span>
+          </a>
+        </h3>
       </footer>
     </div>
   )

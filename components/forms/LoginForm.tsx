@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useRouter } from "next/router"
+import Link from "next/link"
 import { useTranslation } from "next-i18next"
 
 import type { LoginInput } from "types"
@@ -102,9 +103,11 @@ const LoginForm: React.FunctionComponent = () => {
         </div>
 
         <div className="text-sm">
-          <a href="#" className="font-medium text-blue-600 hover:text-blue-700">
-            {t("components.forms.login.forgot")}
-          </a>
+          <Link href="/auth/password/forgot">
+            <a className="font-medium text-blue-600 hover:text-blue-700">
+              {t("components.forms.login.forgot")}
+            </a>
+          </Link>
         </div>
       </div>
 

@@ -4,6 +4,8 @@
     "home": {
       "greetingStart": "Bienvenue ",
       "greetingEnd": " sur Authentication system",
+      "creator": "Créé par ",
+      "owner": "Propulsé par",
       "links": {
         "login": {
           "title": "Se connecter",
