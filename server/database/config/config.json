@@ -2,23 +2,23 @@
   "development": {
     "username": "postgres",
     "password": "root",
-    "database": "dev",
+    "database": "auth-dev",
     "host": "localhost",
     "port": 5432,
     "dialect": "postgres"
   },
   "test": {
-    "username": "root",
-    "password": "test",
-    "database": "database_test",
+    "username": "postgres",
+    "password": "root",
+    "database": "auth-test",
     "host": "127.0.0.1",
     "port": 5432,
     "dialect": "postgres"
   },
   "production": {
-    "username": "root",
-    "password": "test",
-    "database": "database_production",
+    "username": "postgres",
+    "password": "root",
+    "database": "auth-prod",
     "host": "127.0.0.1",
     "port": 5432,
     "dialect": "postgres"

@@ -5,8 +5,8 @@
     "PORT": 587,
     "SECURE": false,
     "AUTH": {
-      "USER": "email@ethereal.email",
-      "PASS": "password"
+      "USER": "aubrey.hoppe85@ethereal.email",
+      "PASS": "5kwrYKWJP5Wk45Gx9n"
     }
   },
   "SHOWN_EMAIL": "'noreply@authentication-system.com' <noreply@authentication-system.com>"

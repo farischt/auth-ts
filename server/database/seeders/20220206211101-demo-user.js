@@ -6,26 +6,13 @@ module.exports = {
       "Users",
       [
         {
-          firstName: "John",
-          lastName: "Doe",
-          email: "example@example.com",
-          password: "test",
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          firstName: "John",
-          lastName: "Doe",
-          email: "example@exmple.com",
-          password: "test",
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        },
-        {
-          firstName: "John",
-          lastName: "Doe",
-          email: "example@mple.com",
-          password: "test",
+          firstName: "Faris",
+          lastName: "Chtatou",
+          email: "f.chtatou@gmail.com",
+          // Password is "Test001!"
+          password:
+            "$2a$10$taBiMKqbBuCH4iYnM8Ts5O16IKWZ.25nm4/YKB42/jal28/FusQqi",
+          verified: true,
           createdAt: new Date(),
           updatedAt: new Date(),
         },

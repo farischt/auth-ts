@@ -1,19 +1,20 @@
 {
-  "name": "authentication-system",
+  "name": "auth-ts",
   "version": "2.0.0",
   "private": true,
   "scripts": {
-    "db:clean": "sequelize db:migrate:undo:all && sequelize db:seed:undo:all",
-    "db:update": "sequelize db:migrate",
-    "db:fill": "sequelize db:seed",
-    "dev": "yarn db:update && next dev",
+    "seed:undo": "sequelize db:seed:undo:all",
+    "seed": "sequelize db:seed:all",
+    "migrate:undo": "./tools/migrate-undo.sh",
+    "migrate": "./tools/migrate.sh",
+    "dev": "next dev",
     "build": "next build",
-    "start": "yarn db:update && next start",
+    "start": "next start",
     "lint": "next lint",
     "prettier:apply": "prettier --write .",
     "prettier:check": "prettier --check .",
-    "check:eslint": "yarn tsc --noEmit && yarn eslint . && yarn prettier --write .",
-    "check:next": "yarn tsc --noEmit && yarn lint && yarn prettier --write ."
+    ":check": "yarn tsc --noEmit && yarn lint && yarn eslint . && yarn prettier --write .",
+    "prepare": "husky install"
   },
   "dependencies": {
     "axios": "^0.26.0",
