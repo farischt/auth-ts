@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from "next"
 
 import Database from "server/database"
+import EmailServer from "server/mails"
+import Template from "server/mails/templates"
 import type { ApiError } from "api/types"
 
 interface ExtendedNextApiRequest extends NextApiRequest {
@@ -39,6 +41,20 @@ export default async function handler(
       const passwordResetToken = await Database.PasswordResetToken.create({
         userId: user.id,
       })
+
+      const emailContext = {
+        // username: user.firstName,
+        link: `http://localhost:3000/auth/password/${encodeURIComponent(
+          passwordResetToken.token
+        )}`,
+      }
+
+      await EmailServer.sendMail(
+        user.email,
+        emailContext,
+        Template.passwordResetLink,
+        "Password Reset"
+      )
 
       res.statusCode = 200
       res.json({
