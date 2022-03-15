@@ -5,6 +5,7 @@ interface AccountConfirmationTokenAttributes {
   userId: number
   createdAt?: Date
   updatedAt?: Date
+  deletedAt?: Date
 }
 interface AccountConfirmationTokenCreationAttributes
   extends Optional<AccountConfirmationTokenAttributes, "token"> {}
@@ -20,6 +21,7 @@ export class AccountConfirmationToken
   declare userId: number
   declare createdAt?: Date
   declare updatedAt?: Date
+  declare deletedAt?: Date
 
   /**
    * Helper method for defining associations.
@@ -40,6 +42,7 @@ export class AccountConfirmationToken
       userId: this.userId,
       createdAt: this.createdAt?.toString() || null,
       updatedAt: this.updatedAt?.toString() || null,
+      deletedAt: this.deletedAt?.toString() || null,
     }
   }
 }
@@ -65,6 +68,7 @@ const AccountConfirmationTokenModel = (sequelize: any) =>
     },
     {
       sequelize,
+      paranoid: true,
       modelName: "AccountConfirmationToken",
     }
   )
