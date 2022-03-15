@@ -54,7 +54,7 @@ export default function LoginPage({ user }: LoginPageProps) {
               href="#"
               className="font-medium text-blue-600 hover:text-blue-700"
             >
-              {t("pages.login.subtitle")}
+              {t("subtitle")}
             </a>
           </p>
         </div>

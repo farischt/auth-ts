@@ -1,5 +1,6 @@
 {
   "title": "Authentication System",
+  "subtitle": "Développer par Authentication System",
   "pages": {
     "home": {
       "greetingStart": "Bienvenue ",
@@ -35,18 +36,19 @@
     },
     "login": {
       "greeting": "Connectez en tant que",
-      "title": "Connectez-vous à votre compte",
-      "subtitle": "Développer par Authentication System"
+      "title": "Connectez-vous à votre compte"
     },
     "register": {
       "greeting": "Connectez en tant que",
-      "title": "S'inscire",
-      "subtitle": "Développer par Authentication System"
+      "title": "S'inscire"
+    },
+    "confirmation": {
+      "title": "Confirmation de votre compte",
+      "text": "Merci {{firstName}}, ton email {{email}}, est valide et ton compte est confirmé!"
     },
     "password": {
       "forgot": {
-        "title": "Mot de passe oublié ?",
-        "subtitle": "Développer par Authentication System"
+        "title": "Mot de passe oublié ?"
       }
     }
   },

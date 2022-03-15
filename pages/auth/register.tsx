@@ -54,7 +54,7 @@ export default function RegisterPage({ user }: RegisterPageProps) {
               href="#"
               className="font-medium text-blue-600 hover:text-blue-700"
             >
-              {t("pages.register.subtitle")}
+              {t("subtitle")}
             </a>
           </p>
         </div>

@@ -1,5 +1,6 @@
 import Head from "next/head"
 import Link from "next/link"
+import { useRouter } from "next/router"
 import { useTranslation } from "next-i18next"
 
 import type { LoggedInUser } from "types"
@@ -10,6 +11,7 @@ type HomePageProps = {
 }
 
 export default function HomePage({ user }: HomePageProps) {
+  const router = useRouter()
   const { t } = useTranslation("common")
 
   return (
@@ -117,7 +119,7 @@ export default function HomePage({ user }: HomePageProps) {
         </div>
       </main>
 
-      <footer className="mt-3 flex h-24 w-full flex-col items-center justify-center border-t">
+      <footer className="mt-3 flex  w-full flex-col items-center justify-center border-t p-5">
         <a
           className="flex items-center justify-center"
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
@@ -137,6 +139,16 @@ export default function HomePage({ user }: HomePageProps) {
             <span className="font-bold"> @Faris Chtatou </span>
           </a>
         </h3>
+        <div className="mt-2">
+          <Link href="/" locale={router.locale === "en" ? "fr" : "en"}>
+            <a>
+              <img
+                className="h-8 w-8 cursor-pointer"
+                src={router.locale === "en" ? "/french.svg" : "/english.svg"}
+              />
+            </a>
+          </Link>
+        </div>
       </footer>
     </div>
   )

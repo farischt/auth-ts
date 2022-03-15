@@ -26,7 +26,7 @@ export default function RegisterPage() {
               href="#"
               className="font-medium text-blue-600 hover:text-blue-700"
             >
-              {t("pages.password.forgot.subtitle")}
+              {t("subtitle")}
             </a>
           </p>
         </div>

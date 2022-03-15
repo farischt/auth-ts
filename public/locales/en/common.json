@@ -1,5 +1,6 @@
 {
   "title": "Authentication System",
+  "subtitle": "Powered by Authentication System",
   "pages": {
     "home": {
       "greetingStart": "Welcome ",
@@ -35,18 +36,19 @@
     },
     "login": {
       "greeting": "Logged in as",
-      "title": "Sign in to your account",
-      "subtitle": "Powered by Authentication System"
+      "title": "Sign in to your account"
     },
     "register": {
       "greeting": "Logged in as",
-      "title": "Register",
-      "subtitle": "Powered by Authentication System"
+      "title": "Register"
+    },
+    "confirmation": {
+      "title": "Confirm your account",
+      "text": "Thanks {{firstName}}, your email {{email}}, is valid and your account is confirmed!"
     },
     "password": {
       "forgot": {
-        "title": "Forgot your password ?",
-        "subtitle": "Powered by Authentication System"
+        "title": "Forgot your password ?"
       }
     }
   },
