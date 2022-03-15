@@ -14,10 +14,10 @@ First, you'll need node.js and yarn installed : [https://nodejs.org/en/].
 Our project uses the following technologies :
 
 - The React framework Next.js for both front-end and back-end (React + Node.js running on the same server)
-- A postgreSQL database
+- A PostgreSQL Database
 - Sequelize ORM
 - Typescript
-- Docker containers for postgres and pgAdmin
+- Docker containers for postgres db and pgAdmin
 
 ## Getting Started
 
@@ -27,13 +27,25 @@ Install all the dependencies by running the following command :
 yarn install
 ```
 
-Go to /server/database/config/config.json and add your own database configurations. If you are using docker, make sur you started your postgres container.
+Go to [this file](server/database/config/config.json) and add your own database configurations. If you are using docker, make sur you started your postgres container.
+
+Then, run both scripts:
+
+```bash
+yarn migrate
+
+yarn seed
+```
+
+Migrate and Seed scripts both run all the pending migrations/seeders.
 
 Then, run the development server:
 
 ```bash
 yarn dev
 ```
+
+In order to correctly send e-mails, you must add your own email configurations to [this file](server/mails/config/config.json). For simplicity, we have used Etheral Email system. Feel free to create your own etheral account [here](https://ethereal.email/).
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
