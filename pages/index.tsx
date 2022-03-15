@@ -145,6 +145,7 @@ export default function HomePage({ user }: HomePageProps) {
               <img
                 className="h-8 w-8 cursor-pointer"
                 src={router.locale === "en" ? "/french.svg" : "/english.svg"}
+                alt={router.locale === "en" ? "French flag" : "USA flag"}
               />
             </a>
           </Link>
