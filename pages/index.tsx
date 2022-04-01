@@ -119,7 +119,7 @@ export default function HomePage({ user }: HomePageProps) {
         </div>
       </main>
 
-      <footer className="mt-3 flex  w-full flex-col items-center justify-center border-t p-5">
+      <footer className="mt-3 flex w-full flex-col items-center justify-center space-y-3 border-t p-5">
         <a
           className="flex items-center justify-center"
           href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
@@ -129,7 +129,7 @@ export default function HomePage({ user }: HomePageProps) {
           {t("pages.home.owner")}
           <img src="/vercel.svg" alt="Vercel Logo" className="ml-2 h-4" />
         </a>
-        <h3 className="mt-2">
+        <h3>
           <a
             href="https://www.linkedin.com/in/farischtatou1999/"
             target="_blank"
@@ -139,7 +139,7 @@ export default function HomePage({ user }: HomePageProps) {
             <span className="font-bold"> @Faris Chtatou </span>
           </a>
         </h3>
-        <div className="mt-2">
+        <div>
           <Link href="/" locale={router.locale === "en" ? "fr" : "en"}>
             <a>
               <img

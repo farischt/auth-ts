@@ -67,10 +67,6 @@ export class PasswordResetToken
     })
   }
 
-  // isTokenValid() {
-  //   return
-  // }
-
   toJSON() {
     return {
       token: this.token,
