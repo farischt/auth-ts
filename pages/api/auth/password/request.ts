@@ -44,7 +44,7 @@ export default async function handler(
 
       const emailContext = {
         // username: user.firstName,
-        link: `http://localhost:3000/auth/password/${encodeURIComponent(
+        link: `${process.env.WEBSITE_URL}/auth/password/${encodeURIComponent(
           passwordResetToken.token
         )}`,
       }
@@ -57,9 +57,7 @@ export default async function handler(
       )
 
       res.statusCode = 200
-      res.json({
-        ...passwordResetToken,
-      })
+      res.json(passwordResetToken)
     } catch (error) {
       res.statusCode = 500
       res.json({ error: "internal_server_error" })

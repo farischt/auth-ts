@@ -76,7 +76,9 @@ export default async function handler(
 
       const emailContext = {
         username: user.firstName,
-        link: `http://localhost:3000/auth/confirmation/${encodeURIComponent(
+        link: `${
+          process.env.WEBSITE_URL
+        }/auth/confirmation/${encodeURIComponent(
           accountConfirmationToken.token
         )}`,
       }
