@@ -1,6 +1,7 @@
 /server/database/migrations
 /server/database/seeders
 /.next/
+.vercel
 /node_modules
 next.config.js
 *.tsbuildinfo
