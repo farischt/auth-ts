@@ -4,7 +4,7 @@ import Link from "next/link"
 import { useTranslation } from "next-i18next"
 
 import type { LoginInput } from "types"
-import { AuthApi } from "api"
+import { AuthApi } from "client"
 
 const LoginForm: React.FunctionComponent = () => {
   const router = useRouter()

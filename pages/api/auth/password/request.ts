@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next"
 import Database from "server/database"
 import EmailServer from "server/mails"
 import Template from "server/mails/templates"
-import type { ApiError } from "api/types"
+import type { ApiError } from "client/types"
 
 interface ExtendedNextApiRequest extends NextApiRequest {
   body: {

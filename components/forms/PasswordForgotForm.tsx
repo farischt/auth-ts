@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useTranslation } from "next-i18next"
 
-import { AuthApi } from "api"
+import { AuthApi } from "client"
 
 const PasswordForgotForm: React.FunctionComponent = () => {
   const { t } = useTranslation("common")

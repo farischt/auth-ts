@@ -67,6 +67,7 @@ export class User
 
   static async emailTaken(email: string, userId?: number) {
     return (await User.findOne({
+      //@ts-ignore
       where: { email, id: { [Op.ne]: userId ?? null } },
     }))
       ? true

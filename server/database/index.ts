@@ -1,4 +1,5 @@
 import { Dialect, Sequelize } from "sequelize"
+import pg from "pg"
 import Models from "./models/index"
 import * as config from "./config/config.json"
 
@@ -10,6 +11,7 @@ const sequelize = new Sequelize(
   {
     host: config[env].host,
     dialect: config[env].dialect as Dialect,
+    dialectModule: pg,
     logging: false,
     pool: {
       max: 5,
