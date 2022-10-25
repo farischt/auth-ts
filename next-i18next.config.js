@@ -5,12 +5,7 @@ module.exports = {
   i18n: {
     defaultLocale: "en",
     locales: ["en", "fr"],
-    localePath: path.resolve("./public/locales"),
-    domains: [
-      {
-        domain: "vercel.app",
-        defaultLocale: "en",
-      },
-    ],
+    // localePath: path.resolve("./public/locales"),
   },
+  localePath: path.resolve("./public/locales"),
 }
